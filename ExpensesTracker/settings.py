@@ -159,7 +159,7 @@ SWAGGER_SETTINGS = {
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    default="localhost,127.0.0.1,expenses-tracker-be-f63s.onrender.com"
+    default="localhost,127.0.0.1,expenses-tracker-be-f63s.onrender.com,expense-tracker-five-dun.vercel.app"
 ).split(",")
 
 CORS_ALLOW_ALL_ORIGINS = False
