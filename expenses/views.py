@@ -12,6 +12,20 @@ from collections import defaultdict
 from django.db.models import Sum
 from django.db.models.functions import TruncDay, TruncMonth, TruncYear
 
+from django.http import JsonResponse
+from django.db import connection
+
+def db_test(request):
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT 1;")
+            row = cursor.fetchone()
+        return JsonResponse({"db": "ok", "result": row})
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        return JsonResponse({"db": "error", "error": str(e)}, status=500)
+
 
 # =========================
 # COMMON HELPER

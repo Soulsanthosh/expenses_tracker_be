@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ExpensesAPI,DailyExpensesAPI,MonthlyExpensesAPI,YearlyExpensesAPI,DailyExpenseChartAPI,MonthlyExpenseChartAPI,YearlyExpenseChartAPI,DashboardSummaryAPI
+from .views import ExpensesAPI,DailyExpensesAPI,MonthlyExpensesAPI,YearlyExpensesAPI,DailyExpenseChartAPI,MonthlyExpenseChartAPI,YearlyExpenseChartAPI,DashboardSummaryAPI,db_test
 
 urlpatterns = [
     path('add-expenses/', ExpensesAPI.as_view(), name = "add expenses" ),
@@ -13,6 +13,9 @@ urlpatterns = [
     path('chart/monthly/', MonthlyExpenseChartAPI.as_view(), name = 'monthly-chart-expenses'),
     path('chart/yearly/', YearlyExpenseChartAPI.as_view(), name = 'yearly-chart-expenses'),
 
-    path('dashboard/summary/', DashboardSummaryAPI.as_view(), name='dashboard-summary')
+    path('dashboard/summary/', DashboardSummaryAPI.as_view(), name='dashboard-summary'),
+
+    path("db-test/", db_test),
+
 
 ]
