@@ -15,8 +15,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY', default='fallback-secret')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -163,7 +161,6 @@ ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     default="expenses-tracker-be-f63s.onrender.com,localhost,127.0.0.1"
 ).split(",")
-
 
 CORS_ALLOW_ALL_ORIGINS = False
 
