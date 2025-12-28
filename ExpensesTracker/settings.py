@@ -160,17 +160,23 @@ SWAGGER_SETTINGS = {
 }
 
 ALLOWED_HOSTS = config(
-    'ALLOWED_HOSTS', 
-    default='std-attnd-mng-be.onrender.com,localhost,127.0.0.1'
-).split(',')
+    "ALLOWED_HOSTS",
+    default="expenses-tracker-be-f63s.onrender.com,localhost,127.0.0.1"
+).split(",")
 
 
 CORS_ALLOW_ALL_ORIGINS = False
+
 CORS_ALLOWED_ORIGINS = config(
-    'CORS_ALLOWED_ORIGINS', 
-    default='http://localhost:5173,http://127.0.0.1:5173'
-).split(',')
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='http://localhost:5173').split(',')
+    "CORS_ALLOWED_ORIGINS",
+    default="http://localhost:5173,http://127.0.0.1:5173,https://expense-tracker-five-dun.vercel.app"
+).split(",")
+
+CSRF_TRUSTED_ORIGINS = config(
+    "CSRF_TRUSTED_ORIGINS",
+    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app"
+).split(",")
+
 CORS_ALLOW_HEADERS = [
     "authorization",
     "content-type",
