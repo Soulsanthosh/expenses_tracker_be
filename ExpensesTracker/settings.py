@@ -166,12 +166,12 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app"
+    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app,https://expenses-tracker-be-f63s.onrender.com"
 ).split(",")
 
 CSRF_TRUSTED_ORIGINS = config(
     "CSRF_TRUSTED_ORIGINS",
-    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app"
+    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app,https://expenses-tracker-be-f63s.onrender.com"
 ).split(",")
 
 CORS_ALLOW_HEADERS = [
