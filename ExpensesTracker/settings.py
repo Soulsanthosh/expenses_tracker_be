@@ -159,14 +159,14 @@ SWAGGER_SETTINGS = {
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    default="expenses-tracker-be-f63s.onrender.com,localhost,127.0.0.1"
+    default="localhost,127.0.0.1,expenses-tracker-be-f63s.onrender.com"
 ).split(",")
 
 CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS = config(
     "CORS_ALLOWED_ORIGINS",
-    default="http://localhost:5173,http://127.0.0.1:5173,https://expense-tracker-five-dun.vercel.app"
+    default="http://localhost:5173,https://expense-tracker-five-dun.vercel.app"
 ).split(",")
 
 CSRF_TRUSTED_ORIGINS = config(
@@ -183,5 +183,11 @@ CORS_ALLOW_HEADERS = [
     "x-csrftoken",
     "x-requested-with",
 ]
+
+CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = True
 
 CORS_ALLOW_CREDENTIALS = True
