@@ -19,7 +19,10 @@ class expenses(models.Model):
     )
     date = models.DateField(auto_now_add=True)
     expenses_type = models.CharField(choices=EXPENSES_CHOICES)
-    amount = models.CharField(max_length=100, null=False)
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2, null=False
+    )
     note = models.CharField(max_length=150, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

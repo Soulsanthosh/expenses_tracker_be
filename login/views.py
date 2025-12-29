@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.permissions import AllowAny
 from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 
@@ -21,6 +21,8 @@ User = get_user_model()
 # ======================
 class RegisterAPI(APIView):
 
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
@@ -37,19 +39,33 @@ class RegisterAPI(APIView):
 # ======================
 class LoginAPI(APIView):
 
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
-        identifier = serializer.validated_data["identifier"]
+        identifier = serializer.validated_data["identifier"].strip()
         password = serializer.validated_data["password"]
 
         user = (
-            User.objects.filter(email=identifier).first()
+            User.objects.filter(email__iexact=identifier).first()
             or User.objects.filter(phone=identifier).first()
         )
 
-        if not user or not user.check_password(password):
+        if not user:
+            return Response(
+                {"error": "User not found"},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        if not user.is_active:
+            return Response(
+                {"error": "User is inactive"},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        if not user.check_password(password):
             return Response(
                 {"error": "Invalid credentials"},
                 status=status.HTTP_401_UNAUTHORIZED
